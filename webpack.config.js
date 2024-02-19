@@ -35,7 +35,14 @@ module.exports = (_, args) => {
           loader: require.resolve('babel-loader'),
           exclude: /node_modules/,
         },
-
+        {
+          test: /\.(png|jpe?g|gif)$/i,
+          use: [
+            {
+              loader: 'file-loader',
+            },
+          ],
+        },
         {
           test: /\.css$/,
           use: [
