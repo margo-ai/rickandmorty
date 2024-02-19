@@ -11,7 +11,7 @@ export const App = () => {
         <Logo />
       </Header>
       <main>
-        <CharactersSection>Список персонажей</CharactersSection>
+        <CharactersSection />
       </main>
     </Container>
   );

@@ -5,11 +5,18 @@ export const GET_CHARACTERS = gql`
     characters {
       info {
         count
+        next
       }
       results {
         id
         name
         status
+        species
+        gender
+        image
+        episode {
+          name
+        }
       }
     }
   }

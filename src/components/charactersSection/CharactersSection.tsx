@@ -2,6 +2,8 @@ import React from 'react';
 
 import styled from 'styled-components';
 
+import { Card, CardProps } from '../card/Card';
+
 import { GET_CHARACTERS } from 'src/graphql/queries/getCharacters';
 import { useQuery } from '@apollo/client';
 
@@ -10,22 +12,37 @@ const SectionWrapper = styled.div`
   padding: 10px;
   background-color: rgba(241, 247, 173, 0.8);
   border-radius: 10px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 `;
 
-const CharactersList = styled.ul``;
+const CharactersList = styled.ul`
+  display: grid;
+  gap: 22px;
+  grid-template-columns: repeat(3, 250px);
+`;
 
-type Props = {
-  children: React.ReactNode;
-};
+const Title = styled.h1`
+  font-size: 25px;
+  text-transform: uppercase;
+  margin-bottom: 30px;
+`;
 
-export const CharactersSection = ({ children }: Props) => {
+export const CharactersSection = () => {
   const { data } = useQuery(GET_CHARACTERS);
 
-  console.log({ data });
+  const items = data?.characters.results || [];
 
+  console.log({ items });
   return (
     <SectionWrapper>
-      <CharactersList>{children}</CharactersList>
+      <Title>Characters List</Title>
+      <CharactersList>
+        {items.map(({ id, name, gender, species, image }: CardProps) => (
+          <Card key={id} name={name} gender={gender} image={image} species={species} />
+        ))}
+      </CharactersList>
     </SectionWrapper>
   );
 };

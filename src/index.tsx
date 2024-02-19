@@ -24,6 +24,7 @@ const Global = createGlobalStyle`
 	background-size: cover;
 	background-repeat: no-repeat;
 	background-position: center;
+	background-attachment: fixed;
 }
   a {
 		text-decoration: none;
