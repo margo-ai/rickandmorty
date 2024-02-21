@@ -49,7 +49,7 @@ export type CardProps = {
   location?: { name: string; dimension: string };
 };
 
-export const Card = ({ name, image }: CardProps) => {
+export const CharacterCard = ({ name, image }: CardProps) => {
   return (
     <CardWrapper>
       <ImageWrapper>
