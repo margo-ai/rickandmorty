@@ -6,6 +6,8 @@ import { Card, CardProps } from '../card/Card';
 
 import { GET_CHARACTERS } from 'src/graphql/queries/getCharacters';
 import { useQuery } from '@apollo/client';
+import { ModalWrapper } from '../modal-wrapper/ModalWrapper';
+import { CharacterDetails } from '../character-details/CharacterDetails';
 
 const SectionWrapper = styled.div`
   margin: 15px 0;
@@ -19,7 +21,7 @@ const SectionWrapper = styled.div`
 
 const CharactersList = styled.ul`
   display: grid;
-  gap: 22px;
+  gap: 2em;
   grid-template-columns: repeat(3, 250px);
 `;
 
@@ -40,7 +42,9 @@ export const CharactersSection = () => {
       <Title>Characters List</Title>
       <CharactersList>
         {items.map(({ id, name, gender, species, image }: CardProps) => (
-          <Card key={id} name={name} gender={gender} image={image} species={species} />
+          <ModalWrapper actionNode={<Card key={id} name={name} gender={gender} image={image} species={species} />}>
+            {({ hide }) => <CharacterDetails data={{ id, name, gender, species, image }} onClose={hide} />}
+          </ModalWrapper>
         ))}
       </CharactersList>
     </SectionWrapper>
