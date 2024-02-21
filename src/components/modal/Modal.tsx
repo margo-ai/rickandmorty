@@ -38,8 +38,9 @@ const StyledModalOverlay = styled.div`
 
 const StyledModalBody = styled.div`
   width: 40%;
-  padding: 2em 1em;
+  padding: 1em;
   display: flex;
+  flex-direction: column;
   align-items: center;
   justify-content: center;
   background-color: #fff;

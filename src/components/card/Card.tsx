@@ -11,6 +11,8 @@ const CardWrapper = styled.div`
   box-shadow: 15px 15px rgba(0, 0, 0, 0.15);
   transition: all 0.8s ease;
 
+  cursor: pointer;
+
   &:hover {
     /* border-radius: 0% 0% 50% 50% / 0% 0% 5% 5%; */
     box-shadow: 18px 18px rgba(0, 0, 0, 0.25);
@@ -21,7 +23,7 @@ const CardWrapper = styled.div`
 `;
 
 const Name = styled.h2`
-  font-size: 20px;
+  font-size: 22px;
 `;
 
 const ImageWrapper = styled.div`
@@ -39,22 +41,24 @@ const CardInfo = styled.div`
 
 export type CardProps = {
   id?: string;
-  name: string;
-  species: string;
-  gender: string;
-  image: string;
+  name?: string;
+  species?: string;
+  gender?: string;
+  image?: string;
+  origin?: { name: string; type: string };
+  location?: { name: string; dimension: string };
 };
 
-export const Card = ({ name, gender, image, species }: CardProps) => {
+export const Card = ({ name, image }: CardProps) => {
   return (
     <CardWrapper>
       <ImageWrapper>
         <img src={image} alt="Character Image" />
       </ImageWrapper>
       <CardInfo>
-        <Name>{`Name: ${name}`}</Name>
-        <div>{`Gender: ${gender}`}</div>
-        <div>{`Species: ${species}`}</div>
+        <Name>{name}</Name>
+        {/* <div>{`Gender: ${gender}`}</div> */}
+        {/* <div>{`Species: ${species}`}</div> */}
       </CardInfo>
     </CardWrapper>
   );

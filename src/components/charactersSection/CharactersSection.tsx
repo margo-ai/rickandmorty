@@ -11,7 +11,7 @@ import { CharacterDetails } from '../character-details/CharacterDetails';
 
 const SectionWrapper = styled.div`
   margin: 15px 0;
-  padding: 10px;
+  padding: 25px 15px;
   background-color: rgba(241, 247, 173, 0.8);
   border-radius: 10px;
   display: flex;
@@ -31,6 +31,18 @@ const Title = styled.h1`
   margin-bottom: 30px;
 `;
 
+type TCharacterInfo = {
+  id?: string;
+  name?: string;
+  species?: string;
+  status?: string;
+  type?: string;
+  gender?: string;
+  image?: string;
+  origin?: { name: string; type: string };
+  location?: { name: string; dimension: string };
+};
+
 export const CharactersSection = () => {
   const { data } = useQuery(GET_CHARACTERS);
 
@@ -39,11 +51,16 @@ export const CharactersSection = () => {
   console.log({ items });
   return (
     <SectionWrapper>
-      <Title>Characters List</Title>
+      {/* <Title>Characters List</Title> */}
       <CharactersList>
-        {items.map(({ id, name, gender, species, image }: CardProps) => (
+        {items.map(({ id, name, gender, species, status, image, origin, location, type }: TCharacterInfo) => (
           <ModalWrapper actionNode={<Card key={id} name={name} gender={gender} image={image} species={species} />}>
-            {({ hide }) => <CharacterDetails data={{ id, name, gender, species, image }} onClose={hide} />}
+            {({ hide }) => (
+              <CharacterDetails
+                data={{ name, gender, image, species, status, origin, location, type }}
+                onClose={hide}
+              />
+            )}
           </ModalWrapper>
         ))}
       </CharactersList>

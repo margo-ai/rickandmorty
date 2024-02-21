@@ -15,6 +15,7 @@ const Global = createGlobalStyle`
 	box-sizing: border-box;
 	font-family: 'Segoe Print';
 	font-size: 20px;
+	line-height: 24px;
 	color: #000;
   }
   body {
