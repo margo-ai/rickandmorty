@@ -63,7 +63,7 @@ export const ButtonsWrapper = styled.div`
   align-items: center;
 `;
 
-export const ButtonCommonStyles = styled.button`
+export const ButtonCommonStyles = styled.input`
   background-color: ${variables.colors.background};
   border-color: #fff;
   border-radius: 10px;

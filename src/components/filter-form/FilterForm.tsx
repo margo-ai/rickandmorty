@@ -90,8 +90,8 @@ export const FilterForm = ({ updateFilters }: Props) => {
         </StyledFormItem>
       </ItemsWrapper>
       <ButtonsWrapper>
-        <ResetButton onClick={() => clearFilters()}>Clear filters</ResetButton>
-        <SubmitButton type="submit">Go</SubmitButton>
+        <ResetButton type="button" onClick={() => clearFilters()} value="Clear filters" />
+        <SubmitButton type="submit" value="Go" />
       </ButtonsWrapper>
     </StyledForm>
   );
