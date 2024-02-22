@@ -1,9 +1,12 @@
-import React, { useState, PropsWithChildren } from 'react';
+import React, { useState, ReactNode } from 'react';
 import { createPortal } from 'react-dom';
 
 import { Modal } from '../modal/Modal';
 
-import { IModalWrapperProps } from './types';
+type IModalWrapperProps = {
+  actionNode: ReactNode;
+  children: ((api: { hide: () => void }) => ReactNode) | ReactNode;
+};
 
 export const ModalWrapper = ({ actionNode, children }: IModalWrapperProps) => {
   const [showModal, setShowModal] = useState<boolean>(false);

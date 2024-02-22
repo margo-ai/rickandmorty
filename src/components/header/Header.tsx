@@ -1,12 +1,6 @@
 import React from 'react';
 
-import styled from 'styled-components';
-
-const HeaderWrapper = styled.header`
-  padding: 0px 10px;
-  display: flex;
-  justify-content: center;
-`;
+import { HeaderWrapper } from './styledComponents';
 
 type Props = {
   children: React.ReactNode;
