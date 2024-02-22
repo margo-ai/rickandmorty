@@ -26,6 +26,7 @@ export const ItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+  align-items: center;
   gap: 1.2em;
   margin-bottom: 20px;
 
@@ -41,7 +42,8 @@ export const ItemsWrapper = styled.div`
 
 export const StyledFormItem = styled.div`
   margin-bottom: 0.5em;
-  input {
+  input,
+  select {
     font-size: ${variables.fontSizes.fontXs}px;
     padding: 10px 14px;
 

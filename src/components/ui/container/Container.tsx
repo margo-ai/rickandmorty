@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { Wrapper } from './styledComponents';
+import { Wrapper } from "./styledComponents";
 
 type Props = {
   children: React.ReactNode;

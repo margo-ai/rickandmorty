@@ -1,15 +1,15 @@
-import React, { useEffect, useState } from 'react';
-import { useLazyQuery } from '@apollo/client';
+import React, { useEffect, useState } from "react";
+import { useLazyQuery } from "@apollo/client";
 
-import { CharactersList, Loader, NotFoundWrapper, SectionWrapper, Title, rotation } from './styledComponents';
+import { CharactersList, Loader, NotFoundWrapper, SectionWrapper, Title, rotation } from "./styledComponents";
 
-import notfound from '../../assets/notfound.png';
+import notfound from "../../assets/notfound.png";
 
-import { CharacterCard } from '../character-card/characterCard';
-import { ModalWrapper } from '../modal-wrapper/ModalWrapper';
-import { CharacterDetails } from '../character-details/CharacterDetails';
-import { GET_CHARACTERS_WITH_FILTERS } from 'src/graphql/queries/getFilteredCharacters';
-import { FilterForm } from '../filter-form/FilterForm';
+import { CharacterCard } from "../character-card/characterCard";
+import { ModalWrapper } from "../modal-wrapper/ModalWrapper";
+import { CharacterDetails } from "../character-details/CharacterDetails";
+import { GET_CHARACTERS_WITH_FILTERS } from "src/graphql/queries/getFilteredCharacters";
+import { FilterForm } from "../filter-form/FilterForm";
 
 type TCharacterInfo = {
   id?: string;
@@ -33,11 +33,11 @@ type TFilterValues = {
 
 export const CharactersSection = () => {
   const [filterValues, setFilterValues] = useState<TFilterValues>({
-    name: '',
-    status: '',
-    gender: '',
-    type: '',
-    species: '',
+    name: "",
+    status: "",
+    gender: "",
+    type: "",
+    species: "",
   });
 
   const [getCharactersWithFilters, { data: charactersWithAllFilters, loading }] = useLazyQuery(
@@ -60,7 +60,7 @@ export const CharactersSection = () => {
   useEffect(() => {
     getCharactersWithFilters();
   }, [filterValues]);
-
+  console.log(filteredData);
   return (
     <SectionWrapper>
       <FilterForm updateFilters={updateFilters} />
