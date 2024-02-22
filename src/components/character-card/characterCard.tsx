@@ -1,6 +1,7 @@
 import React from 'react';
 
 import styled from 'styled-components';
+import { variables } from '../../styles/variables';
 
 const CardWrapper = styled.div`
   display: flex;
@@ -23,7 +24,19 @@ const CardWrapper = styled.div`
 `;
 
 const Name = styled.h2`
-  font-size: 22px;
+  font-size: ${variables.fontSizes.fontM}px;
+
+  @media screen and (max-width: 700px) {
+    font-size: ${variables.fontSizes.fontS}px;
+  }
+
+  @media screen and (max-width: 600px) {
+    font-size: ${variables.fontSizes.fontM}px;
+  }
+
+  @media screen and (max-width: 500px) {
+    font-size: ${variables.fontSizes.fontS}px;
+  }
 `;
 
 const ImageWrapper = styled.div`
@@ -37,6 +50,10 @@ const ImageWrapper = styled.div`
 
 const CardInfo = styled.div`
   padding: 12px;
+
+  @media screen and (max-width: 700px) {
+    padding: 10px;
+  }
 `;
 
 export type CardProps = {

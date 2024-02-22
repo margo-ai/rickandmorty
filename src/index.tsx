@@ -5,6 +5,7 @@ import { ApolloProvider } from '@apollo/client';
 import { client } from './graphql/client';
 
 import { createGlobalStyle } from 'styled-components';
+import { variables } from './styles/variables';
 
 import { App } from './App';
 
@@ -14,7 +15,7 @@ const Global = createGlobalStyle`
 	padding: 0;
 	box-sizing: border-box;
 	font-family: 'Segoe Print';
-	font-size: 20px;
+	font-size: ${variables.fontSizes.fontS}px;
 	line-height: 24px;
 	color: #000;
   }

@@ -1,21 +1,21 @@
 import React, { useEffect, useState } from 'react';
+import { useLazyQuery } from '@apollo/client';
 
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
+import { variables } from '../../styles/variables';
 
-import { CharacterCard, CardProps } from '../character-card/CharacterCard';
+import notfound from '../../assets/notfound.png';
 
-import { GET_CHARACTERS } from 'src/graphql/queries/getCharacters';
-import { useLazyQuery, useQuery } from '@apollo/client';
+import { CharacterCard } from '../character-card/characterCard';
 import { ModalWrapper } from '../modal-wrapper/ModalWrapper';
 import { CharacterDetails } from '../character-details/CharacterDetails';
-import { FILTER_CHARACTERS_BY_STATUS } from 'src/graphql/queries/filterCharactersByStatus';
-import { GET_CHARACTERS_WITH_FILTERS } from 'src/graphql/queries/filteredCharacters';
+import { GET_CHARACTERS_WITH_FILTERS } from 'src/graphql/queries/getFilteredCharacters';
 import { FilterForm } from '../filter-form/FilterForm';
 
 const SectionWrapper = styled.div`
   margin: 15px 0;
   padding: 25px 20px;
-  background-color: rgba(241, 247, 173, 0.8);
+  background-color: ${variables.colors.backgroundWithOpacity};
   border-radius: 10px;
   display: flex;
   flex-direction: column;
@@ -26,12 +26,73 @@ const CharactersList = styled.ul`
   display: grid;
   gap: 2em;
   grid-template-columns: repeat(3, 250px);
+
+  @media screen and (max-width: 960px) {
+    gap: 1.2em;
+  }
+
+  @media screen and (max-width: 930px) {
+    grid-template-columns: repeat(2, 300px);
+    gap: 2em;
+  }
+
+  @media screen and (max-width: 850px) {
+    grid-template-columns: repeat(2, 260px);
+  }
+
+  @media screen and (max-width: 700px) {
+    grid-template-columns: repeat(2, 220px);
+  }
+
+  @media screen and (max-width: 600px) {
+    grid-template-columns: 320px;
+  }
+
+  @media screen and (max-width: 500px) {
+    grid-template-columns: 260px;
+  }
 `;
 
 const Title = styled.h1`
-  font-size: 25px;
+  font-size: ${variables.fontSizes.fontL}px;
   text-transform: uppercase;
   margin-bottom: 30px;
+
+  @media screen and (max-width: 850px) {
+    font-size: ${variables.fontSizes.fontM}px;
+  }
+
+  @media screen and (max-width: 700px) {
+    font-size: ${variables.fontSizes.fontS}px;
+  }
+`;
+
+const rotation = keyframes`
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+`;
+
+const Loader = styled.span`
+  width: 48px;
+  height: 48px;
+  border: 5px solid #fff;
+  border-bottom-color: transparent;
+  border-radius: 50%;
+  display: inline-block;
+  box-sizing: border-box;
+  animation: ${rotation} 1s linear infinite;
+`;
+
+const NotFoundWrapper = styled.div`
+  width: 50%;
+
+  img {
+    width: 100%;
+  }
 `;
 
 type TCharacterInfo = {
@@ -63,7 +124,7 @@ export const CharactersSection = () => {
     species: '',
   });
 
-  const [getCharactersWithFilters, { data: charactersWithAllFilters, refetch }] = useLazyQuery(
+  const [getCharactersWithFilters, { data: charactersWithAllFilters, loading }] = useLazyQuery(
     GET_CHARACTERS_WITH_FILTERS,
     {
       variables: {
@@ -87,22 +148,31 @@ export const CharactersSection = () => {
 
   return (
     <SectionWrapper>
-      <FilterForm filterValues={filterValues} updateFilters={updateFilters} updateList={() => refetch()} />
+      <FilterForm filterValues={filterValues} updateFilters={updateFilters} />
       <Title>Characters List</Title>
-      <CharactersList>
-        {filteredData.map(({ id, name, gender, species, status, image, origin, location, type }: TCharacterInfo) => (
-          <ModalWrapper
-            actionNode={<CharacterCard key={id} name={name} gender={gender} image={image} species={species} />}
-          >
-            {({ hide }) => (
-              <CharacterDetails
-                data={{ name, gender, image, species, status, origin, location, type }}
-                onClose={hide}
-              />
-            )}
-          </ModalWrapper>
-        ))}
-      </CharactersList>
+      {!!loading ? (
+        <Loader />
+      ) : (
+        <CharactersList>
+          {filteredData.map(({ id, name, gender, species, status, image, origin, location, type }: TCharacterInfo) => (
+            <ModalWrapper
+              actionNode={<CharacterCard key={id} name={name} gender={gender} image={image} species={species} />}
+            >
+              {({ hide }) => (
+                <CharacterDetails
+                  data={{ name, gender, image, species, status, origin, location, type }}
+                  onClose={hide}
+                />
+              )}
+            </ModalWrapper>
+          ))}
+        </CharactersList>
+      )}
+      {filteredData.length === 0 && !loading ? (
+        <NotFoundWrapper>
+          <img src={notfound} />
+        </NotFoundWrapper>
+      ) : null}
     </SectionWrapper>
   );
 };

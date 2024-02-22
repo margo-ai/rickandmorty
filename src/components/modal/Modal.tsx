@@ -47,6 +47,10 @@ const StyledModalBody = styled.div`
   border-radius: 2px;
   box-shadow: 6px 6px 10px rgba(0, 0, 0, 0.2);
   z-index: 998;
+
+  @media screen and (max-width: 660px) {
+    width: 55%;
+  }
 `;
 
 export const Modal = ({ visible = false, hide, children }: PropsWithChildren<IModalProps>) => {
