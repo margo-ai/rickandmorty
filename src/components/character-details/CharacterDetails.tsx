@@ -10,11 +10,13 @@ const InfoWrapper = styled.div`
 `;
 
 const ImageWrapper = styled.div`
-  /* max-height: 350px;
+  max-height: 280px;
+  max-width: 280px;
   overflow: hidden;
   img {
     width: 100%;
-  } */
+    height: 100%;
+  }
   display: flex;
   justify-content: center;
   align-items: center;

@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
 
 import styled from 'styled-components';
 
-import { CharacterCard, CardProps } from '../character-card/characterCard';
+import { CharacterCard, CardProps } from '../character-card/CharacterCard';
 
 import { GET_CHARACTERS } from 'src/graphql/queries/getCharacters';
-import { useQuery } from '@apollo/client';
+import { useLazyQuery, useQuery } from '@apollo/client';
 import { ModalWrapper } from '../modal-wrapper/ModalWrapper';
 import { CharacterDetails } from '../character-details/CharacterDetails';
 import { FILTER_CHARACTERS_BY_STATUS } from 'src/graphql/queries/filterCharactersByStatus';
@@ -46,23 +46,48 @@ type TCharacterInfo = {
   location?: { name: string; dimension: string };
 };
 
+type TFilterValues = {
+  name?: string;
+  status?: string;
+  gender?: string;
+  type?: string;
+  species?: string;
+};
+
 export const CharactersSection = () => {
-  const { data } = useQuery(GET_CHARACTERS);
-
-  // const { data: filteredData } = useQuery(FILTER_CHARACTERS_BY_STATUS, { variables: { input: 'Alive' } });
-
-  const { data: charactersWithAllFilters } = useQuery(GET_CHARACTERS_WITH_FILTERS, {
-    variables: { name: 'Rick', status: 'Alive', species: 'Human' },
+  const [filterValues, setFilterValues] = useState<TFilterValues>({
+    name: '',
+    status: '',
+    gender: '',
+    type: '',
+    species: '',
   });
 
-  const items = data?.characters.results || [];
-  // const filteredDataA = filteredData?.characters.results || [];
+  const [getCharactersWithFilters, { data: charactersWithAllFilters, refetch }] = useLazyQuery(
+    GET_CHARACTERS_WITH_FILTERS,
+    {
+      variables: {
+        name: filterValues.name,
+        status: filterValues.status,
+        species: filterValues.species,
+        gender: filterValues.gender,
+        type: filterValues.type,
+      },
+    },
+  );
+
+  const updateFilters = (data: TFilterValues) => setFilterValues(data);
+
   console.log({ charactersWithAllFilters });
   const filteredData = charactersWithAllFilters?.characters.results || [];
 
+  useEffect(() => {
+    getCharactersWithFilters();
+  }, [filterValues]);
+
   return (
     <SectionWrapper>
-      <FilterForm />
+      <FilterForm filterValues={filterValues} updateFilters={updateFilters} updateList={() => refetch()} />
       <Title>Characters List</Title>
       <CharactersList>
         {filteredData.map(({ id, name, gender, species, status, image, origin, location, type }: TCharacterInfo) => (

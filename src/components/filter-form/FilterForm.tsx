@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useCallback } from 'react';
 import { useForm, Controller, SubmitHandler } from 'react-hook-form';
 import { yupResolver } from '@hookform/resolvers/yup';
 import * as yup from 'yup';
@@ -25,6 +25,8 @@ const ItemsWrapper = styled.div`
   display: flex;
   flex-wrap: wrap;
   justify-content: space-around;
+
+  gap: 1.2em;
 `;
 
 const StyledFormItem = styled.div`
@@ -59,7 +61,13 @@ type TFormValues = {
   species?: string;
 };
 
-export const FilterForm = () => {
+type Props = {
+  updateFilters: (data: any) => void;
+  updateList: () => void;
+  filterValues: TFormValues;
+};
+
+export const FilterForm = ({ updateFilters, updateList, filterValues }: Props) => {
   const {
     control,
     handleSubmit,
@@ -77,8 +85,13 @@ export const FilterForm = () => {
     mode: 'onChange',
   });
 
+  const handleFilters = useCallback((data: any) => updateFilters(data), [updateFilters]);
+
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     console.log(data);
+    handleFilters(data);
+    updateList;
+    console.log(filterValues);
   };
 
   return (
