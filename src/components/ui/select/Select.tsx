@@ -1,5 +1,7 @@
 import React, { ChangeEvent } from "react";
 
+import { SelectWrapper } from "./styledComponents";
+
 type Props = {
   label: string;
   value: string;
@@ -9,13 +11,13 @@ type Props = {
 
 export const Select = ({ label, value, options, onChange }: Props) => {
   return (
-    <label>
-      {label}
-      <select value={value} onChange={onChange}>
+    <SelectWrapper>
+      <label htmlFor="select">{label}</label>
+      <select id="select" value={value} onChange={onChange}>
         {options.map((option) => (
           <option value={option.value}>{option.label}</option>
         ))}
       </select>
-    </label>
+    </SelectWrapper>
   );
 };

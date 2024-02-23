@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { variables } from '../../styles/variables';
+import styled from "styled-components";
+import { variables } from "../../styles/variables";
 
 export const StyledForm = styled.form`
   display: flex;
@@ -42,8 +42,9 @@ export const ItemsWrapper = styled.div`
 
 export const StyledFormItem = styled.div`
   margin-bottom: 0.5em;
-  input,
-  select {
+
+  input {
+    width: 230px;
     font-size: ${variables.fontSizes.fontXs}px;
     padding: 10px 14px;
 

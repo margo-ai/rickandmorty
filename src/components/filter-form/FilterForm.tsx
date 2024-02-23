@@ -86,19 +86,17 @@ export const FilterForm = ({ updateFilters }: Props) => {
 
         <StyledFormItem>
           <Controller
-            name="status"
+            name="type"
             control={control}
-            render={({ field: { value, ...other } }) => (
-              // <>
-              //   <label htmlFor="status">Status</label>
-              //   <select id="status" value={value} onChange={handleChangeStatus} {...other}>
-              //     {statuses.map((option) => (
-              //       <option value={option.value}>{option.label}</option>
-              //     ))}
-              //   </select>
-              // </>
-              <Select value={value} label="Status" options={statuses} onChange={handleChangeStatus} {...other} />
-            )}
+            render={({ field: { value, ...other } }) => <input placeholder="Type" value={value || ""} {...other} />}
+          />
+        </StyledFormItem>
+
+        <StyledFormItem>
+          <Controller
+            name="species"
+            control={control}
+            render={({ field: { value, ...other } }) => <input placeholder="Species" value={value || ""} {...other} />}
           />
         </StyledFormItem>
 
@@ -122,17 +120,19 @@ export const FilterForm = ({ updateFilters }: Props) => {
 
         <StyledFormItem>
           <Controller
-            name="type"
+            name="status"
             control={control}
-            render={({ field: { value, ...other } }) => <input placeholder="Type" value={value || ""} {...other} />}
-          />
-        </StyledFormItem>
-
-        <StyledFormItem>
-          <Controller
-            name="species"
-            control={control}
-            render={({ field: { value, ...other } }) => <input placeholder="Species" value={value || ""} {...other} />}
+            render={({ field: { value, ...other } }) => (
+              // <>
+              //   <label htmlFor="status">Status</label>
+              //   <select id="status" value={value} onChange={handleChangeStatus} {...other}>
+              //     {statuses.map((option) => (
+              //       <option value={option.value}>{option.label}</option>
+              //     ))}
+              //   </select>
+              // </>
+              <Select value={value} label="Status" options={statuses} onChange={handleChangeStatus} {...other} />
+            )}
           />
         </StyledFormItem>
       </ItemsWrapper>
