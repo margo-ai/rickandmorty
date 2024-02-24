@@ -22330,7 +22330,7 @@ function index_taggedTemplateLiteral(strings, raw) { if (!raw) { raw = strings.s
 
 
 
-var Global = dt(index_templateObject || (index_templateObject = index_taggedTemplateLiteral(["\n  * {\n    margin: 0;\n\tpadding: 0;\n\tbox-sizing: border-box;\n\tfont-family: 'Segoe Print';\n\tfont-size: ", "px;\n\tline-height: 24px;\n\tcolor: #000;\n  }\n  body {\n\twidth: 100%;\n\theight: 500px;\n\tbackground-image: url('", "');\n\tbackground-size: cover;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tbackground-attachment: fixed;\n}\n  a {\n\t\ttext-decoration: none;\n\t}\n\n\tli {\n\t\tlist-style: none;\n\t}\n"])), variables.fontSizes.fontS, background_namespaceObject);
+var Global = dt(index_templateObject || (index_templateObject = index_taggedTemplateLiteral(["\n  * {\n    margin: 0;\n\tpadding: 0;\n\tbox-sizing: border-box;\n\tfont-family: 'Segoe Print', 'Rubik', 'Arial';\n\tfont-size: ", "px;\n\tline-height: 24px;\n\tcolor: #000;\n  }\n  body {\n\twidth: 100%;\n\theight: 500px;\n\tbackground-image: url('", "');\n\tbackground-size: cover;\n\tbackground-repeat: no-repeat;\n\tbackground-position: center;\n\tbackground-attachment: fixed;\n}\n  a {\n\t\ttext-decoration: none;\n\t}\n\n\tli {\n\t\tlist-style: none;\n\t}\n"])), variables.fontSizes.fontS, background_namespaceObject);
 var root = client.createRoot(document.getElementById("root"));
 root.render( /*#__PURE__*/react.createElement(react.StrictMode, null, /*#__PURE__*/react.createElement(ApolloProvider, {
   client: client_client
