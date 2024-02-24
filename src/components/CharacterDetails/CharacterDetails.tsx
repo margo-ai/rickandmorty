@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { BoldTitle, CloseButton, ImageWrapper, InfoItem, InfoWrapper, Name } from './styledComponents';
+import { BoldTitle, CloseButton, ImageWrapper, InfoItem, InfoWrapper, Name } from "./styledComponents";
 
 type CharacterData = {
   id?: string;
@@ -21,7 +21,6 @@ type Props = {
 
 export const CharacterDetails = ({ data, onClose }: Props) => {
   const { name, gender, image, species, origin, location, status, type } = data;
-  console.log(data);
 
   return (
     <>
@@ -40,7 +39,7 @@ export const CharacterDetails = ({ data, onClose }: Props) => {
         </InfoItem>
         <InfoItem>
           <BoldTitle>Type: </BoldTitle>
-          {type.length === 0 ? 'unknown' : type}
+          {type.length === 0 ? "unknown" : type}
         </InfoItem>
         <InfoItem>
           <BoldTitle>Origin: </BoldTitle>

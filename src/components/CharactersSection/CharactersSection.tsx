@@ -1,15 +1,15 @@
 import React, { useEffect, useState } from "react";
 import { useLazyQuery } from "@apollo/client";
 
-import { CharactersList, Loader, NotFoundWrapper, SectionWrapper, Title, rotation } from "./styledComponents";
+import { CharactersList, Loader, NotFoundWrapper, SectionWrapper, Title } from "./styledComponents";
 
 import notfound from "../../assets/notfound.png";
 
-import { CharacterCard } from "../character-card/characterCard";
-import { ModalWrapper } from "../modal-wrapper/ModalWrapper";
-import { CharacterDetails } from "../character-details/CharacterDetails";
+import { CharacterCard } from "../CharacterCard";
+import { ModalWrapper } from "../ModalWrapper";
+import { CharacterDetails } from "../CharacterDetails";
 import { GET_CHARACTERS_WITH_FILTERS } from "src/graphql/queries/getFilteredCharacters";
-import { FilterForm } from "../filter-form/FilterForm";
+import { FiltersForm } from "../FiltersForm";
 
 type TCharacterInfo = {
   id?: string;
@@ -60,10 +60,10 @@ export const CharactersSection = () => {
   useEffect(() => {
     getCharactersWithFilters();
   }, [filterValues]);
-  console.log(filteredData);
+
   return (
     <SectionWrapper>
-      <FilterForm updateFilters={updateFilters} />
+      <FiltersForm updateFilters={updateFilters} />
       <Title>Characters List</Title>
       {!!loading ? (
         <Loader />

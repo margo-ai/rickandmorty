@@ -1,5 +1,5 @@
-import styled, { keyframes } from 'styled-components';
-import { variables } from '../../styles/variables';
+import styled, { keyframes } from "styled-components";
+import { variables } from "../../styles/variables";
 
 export const SectionWrapper = styled.div`
   margin: 15px 0;
@@ -9,6 +9,10 @@ export const SectionWrapper = styled.div`
   display: flex;
   flex-direction: column;
   align-items: center;
+
+  @media screen and (max-width: 600px) {
+    padding: 20px 15px;
+  }
 `;
 
 export const CharactersList = styled.ul`
@@ -40,8 +44,8 @@ export const CharactersList = styled.ul`
   @media screen and (max-width: 500px) {
     grid-template-columns: 260px;
   }
-  @media screen and (max-width: 290px) {
-    grid-template-columns: 230px;
+  @media screen and (max-width: 400px) {
+    grid-template-columns: 210px;
   }
 `;
 

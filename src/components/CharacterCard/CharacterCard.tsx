@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { CardInfo, CardWrapper, ImageWrapper, Name } from './styledComponents';
+import { CardInfo, CardWrapper, ImageWrapper, Name } from "./styledComponents";
 
 export type CardProps = {
   id?: string;

@@ -1,6 +1,6 @@
-import React, { PropsWithChildren, useCallback, useEffect, RefCallback } from 'react';
+import React, { PropsWithChildren, useCallback, useEffect, RefCallback } from "react";
 
-import { StyledModal, StyledModalBody, StyledModalOverlay } from './styledComponents';
+import { StyledModal, StyledModalBody, StyledModalOverlay } from "./styledComponents";
 
 type IModalProps = {
   visible: boolean;
@@ -18,18 +18,18 @@ export const Modal = ({ visible = false, hide, children }: PropsWithChildren<IMo
   useEffect(() => {
     if (!visible) return;
 
-    const modalElement: HTMLElement | null = document.querySelector('.modal');
+    const modalElement: HTMLElement | null = document.querySelector(".modal");
 
     const modalListener = (e: PointerEvent & { target: { className: string; tagName: string } }) => {
       const { target } = e;
-      if (!target.className.includes('modal__overlay')) return false;
+      if (!target.className.includes("modal__overlay")) return false;
       hideModal(e);
     };
 
-    if (modalElement) modalElement.addEventListener('click', modalListener);
+    if (modalElement) modalElement.addEventListener("click", modalListener);
 
     return () => {
-      modalElement.removeEventListener('click', modalListener);
+      modalElement.removeEventListener("click", modalListener);
     };
   }, [visible, hideModal]);
 

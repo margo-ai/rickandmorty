@@ -1,7 +1,7 @@
-import React, { useState, ReactNode } from 'react';
-import { createPortal } from 'react-dom';
+import React, { useState, ReactNode } from "react";
+import { createPortal } from "react-dom";
 
-import { Modal } from '../modal/Modal';
+import { Modal } from "../Modal";
 
 type IModalWrapperProps = {
   actionNode: ReactNode;
@@ -21,7 +21,7 @@ export const ModalWrapper = ({ actionNode, children }: IModalWrapperProps) => {
       </div>
       {createPortal(
         <Modal visible={showModal} hide={hideModalHandler}>
-          {typeof children === 'function' ? children({ hide: hideModalHandler }) : children}
+          {typeof children === "function" ? children({ hide: hideModalHandler }) : children}
         </Modal>,
         document.body,
       )}

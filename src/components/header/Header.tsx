@@ -1,6 +1,6 @@
-import React from 'react';
+import React from "react";
 
-import { HeaderWrapper } from './styledComponents';
+import { HeaderWrapper } from "./styledComponents";
 
 type Props = {
   children: React.ReactNode;

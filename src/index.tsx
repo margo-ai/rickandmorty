@@ -1,20 +1,21 @@
-import React from 'react';
-import ReactDOM from 'react-dom/client';
-import background from './assets/background.jpg';
-import { ApolloProvider } from '@apollo/client';
-import { client } from './graphql/client';
+import React from "react";
+import ReactDOM from "react-dom/client";
+import background from "./assets/background.jpg";
+import { ApolloProvider } from "@apollo/client";
+import { client } from "./graphql/client";
 
-import { createGlobalStyle } from 'styled-components';
-import { variables } from './styles/variables';
+import { createGlobalStyle } from "styled-components";
+import { variables } from "./styles/variables";
 
-import { App } from './App';
+import { App } from "./App";
 
 const Global = createGlobalStyle`
   * {
     margin: 0;
 	padding: 0;
 	box-sizing: border-box;
-	font-family: 'Segoe Print';
+	font-family: "Comic Neue", cursive;
+	font-weight: 400;
 	font-size: ${variables.fontSizes.fontS}px;
 	line-height: 24px;
 	color: #000;
@@ -37,7 +38,7 @@ const Global = createGlobalStyle`
 	}
 `;
 
-const root = ReactDOM.createRoot(document.getElementById('root') as HTMLElement);
+const root = ReactDOM.createRoot(document.getElementById("root") as HTMLElement);
 root.render(
   <React.StrictMode>
     <ApolloProvider client={client}>

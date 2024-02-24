@@ -1,4 +1,4 @@
-import styled from 'styled-components';
+import styled from "styled-components";
 
 export const StyledModal = styled.div`
   position: fixed;
@@ -46,5 +46,11 @@ export const StyledModalBody = styled.div`
 
   @media screen and (max-width: 660px) {
     width: 55%;
+    padding: 1.2em;
+  }
+
+  @media screen and (max-width: 450px) {
+    width: 65%;
+    padding: 1em;
   }
 `;

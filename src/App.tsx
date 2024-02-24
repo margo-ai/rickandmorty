@@ -1,9 +1,10 @@
 import React from "react";
 
-import { Container } from "./components/ui/container/Container";
-import { Header } from "./components/header/Header";
-import { Logo } from "./components/logo/Logo";
-import { CharactersSection } from "./components/characters-section/CharactersSection";
+import { Container } from "./components/ui/Сontainer";
+import { Header } from "./components/Header";
+import { Logo } from "./components/Logo";
+import { CharactersSection } from "./components/CharactersSection";
+
 export const App = () => {
   return (
     <Container>

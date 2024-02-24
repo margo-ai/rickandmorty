@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { variables } from '../../styles/variables';
+import styled from "styled-components";
+import { variables } from "../../styles/variables";
 
 export const CardWrapper = styled.div`
   display: flex;
@@ -22,6 +22,7 @@ export const CardWrapper = styled.div`
 
 export const Name = styled.h2`
   font-size: ${variables.fontSizes.fontM}px;
+  font-weight: 700;
 
   @media screen and (max-width: 700px) {
     font-size: ${variables.fontSizes.fontS}px;

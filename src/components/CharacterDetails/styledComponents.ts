@@ -1,5 +1,5 @@
-import styled from 'styled-components';
-import { variables } from '../../styles/variables';
+import styled from "styled-components";
+import { variables } from "../../styles/variables";
 
 export const InfoWrapper = styled.div`
   display: flex;
@@ -47,6 +47,7 @@ export const Name = styled.h3`
   text-transform: uppercase;
   align-self: center;
   margin-bottom: 1em;
+  font-weight: 700;
 
   @media screen and (max-width: 700px) {
     font-size: ${variables.fontSizes.fontS}px;
@@ -105,7 +106,7 @@ export const CloseButton = styled.button`
   &::before,
   &::after {
     position: absolute;
-    content: '';
+    content: "";
     width: 100%;
     height: 100%;
     top: -100%;

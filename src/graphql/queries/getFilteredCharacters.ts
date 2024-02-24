@@ -1,4 +1,4 @@
-import { gql } from '@apollo/client';
+import { gql } from "@apollo/client";
 
 export const GET_CHARACTERS_WITH_FILTERS = gql`
   query getCharactersWidthFilters($name: String, $status: String, $gender: String, $type: String, $species: String) {

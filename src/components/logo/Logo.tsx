@@ -1,7 +1,7 @@
-import React from 'react';
+import React from "react";
 
-import { LogoWrapper } from './styledComponents';
-import image from '../../assets/logo.png';
+import { LogoWrapper } from "./styledComponents";
+import image from "../../assets/logo.png";
 
 export const Logo = () => {
   return (

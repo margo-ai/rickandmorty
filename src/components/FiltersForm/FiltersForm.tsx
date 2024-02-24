@@ -1,10 +1,9 @@
 import React, { ChangeEvent, useState } from "react";
 import { useForm, Controller, SubmitHandler } from "react-hook-form";
 
-import { Select } from "../ui/select/Select";
+import { Select } from "../ui/Select";
 
 import {
-  ButtonCommonStyles,
   ButtonsWrapper,
   ItemsWrapper,
   ResetButton,
@@ -26,7 +25,7 @@ type Props = {
   updateFilters: (data: any) => void;
 };
 
-export const FilterForm = ({ updateFilters }: Props) => {
+export const FiltersForm = ({ updateFilters }: Props) => {
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
       name: "",
@@ -105,14 +104,6 @@ export const FilterForm = ({ updateFilters }: Props) => {
             name="gender"
             control={control}
             render={({ field: { value, ...other } }) => (
-              // <label>
-              //   Gender
-              //   <select value={value} onChange={handleChangeGender} {...other}>
-              //     {genders.map((option) => (
-              //       <option value={option.value}>{option.label}</option>
-              //     ))}
-              //   </select>
-              // </label>
               <Select value={value} label="Gender" options={genders} onChange={handleChangeGender} {...other} />
             )}
           />
@@ -123,14 +114,6 @@ export const FilterForm = ({ updateFilters }: Props) => {
             name="status"
             control={control}
             render={({ field: { value, ...other } }) => (
-              // <>
-              //   <label htmlFor="status">Status</label>
-              //   <select id="status" value={value} onChange={handleChangeStatus} {...other}>
-              //     {statuses.map((option) => (
-              //       <option value={option.value}>{option.label}</option>
-              //     ))}
-              //   </select>
-              // </>
               <Select value={value} label="Status" options={statuses} onChange={handleChangeStatus} {...other} />
             )}
           />
