@@ -66,37 +66,36 @@ export const CharactersSection = () => {
   useEffect(() => {
     getCharactersWithFilters();
   }, [filterValues, currentPage]);
-  console.log(pages);
   return (
     <SectionWrapper>
       <FiltersForm updateFilters={updateFilters} handlePage={setCurrentPage} />
       <Title>Characters List</Title>
       {!!loading ? (
         <Loader />
+      ) : filteredData.length != 0 ? (
+        <>
+          <CharactersList>
+            {filteredData.map(
+              ({ id, name, gender, species, status, image, origin, location, type }: TCharacterInfo) => (
+                <ModalWrapper
+                  actionNode={<CharacterCard key={id} name={name} gender={gender} image={image} species={species} />}
+                >
+                  {({ hide }) => (
+                    <CharacterDetails
+                      data={{ name, gender, image, species, status, origin, location, type }}
+                      onClose={hide}
+                    />
+                  )}
+                </ModalWrapper>
+              ),
+            )}
+          </CharactersList>
+          <Pagination count={pages} page={currentPage} onChange={(_, number) => setCurrentPage(number)} />
+        </>
       ) : (
-        <CharactersList>
-          {filteredData.map(({ id, name, gender, species, status, image, origin, location, type }: TCharacterInfo) => (
-            <ModalWrapper
-              actionNode={<CharacterCard key={id} name={name} gender={gender} image={image} species={species} />}
-            >
-              {({ hide }) => (
-                <CharacterDetails
-                  data={{ name, gender, image, species, status, origin, location, type }}
-                  onClose={hide}
-                />
-              )}
-            </ModalWrapper>
-          ))}
-        </CharactersList>
-      )}
-      {filteredData.length === 0 && !loading ? (
         <NotFoundWrapper>
           <img src={notfound} />
         </NotFoundWrapper>
-      ) : null}
-
-      {filteredData.length != 0 && (
-        <Pagination count={pages} page={currentPage} onChange={(_, number) => setCurrentPage(number)} />
       )}
     </SectionWrapper>
   );
