@@ -20,6 +20,8 @@ export const CharactersList = styled.ul`
   gap: 2em;
   grid-template-columns: repeat(3, 250px);
 
+  margin-bottom: 30px;
+
   @media screen and (max-width: 960px) {
     gap: 1.2em;
   }
@@ -51,6 +53,7 @@ export const CharactersList = styled.ul`
 
 export const Title = styled.h1`
   font-size: ${variables.fontSizes.fontL}px;
+  font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 30px;
 

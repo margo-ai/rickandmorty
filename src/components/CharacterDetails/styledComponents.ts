@@ -1,7 +1,7 @@
 import styled from "styled-components";
 import { variables } from "../../styles/variables";
 
-export const InfoWrapper = styled.div`
+export const InfoWrapper = styled.li`
   display: flex;
   flex-direction: column;
   margin-bottom: 1.2em;

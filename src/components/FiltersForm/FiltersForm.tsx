@@ -22,10 +22,11 @@ type TFormValues = {
 };
 
 type Props = {
-  updateFilters: (data: any) => void;
+  updateFilters: (data: TFormValues) => void;
+  handlePage: (data: number) => void;
 };
 
-export const FiltersForm = ({ updateFilters }: Props) => {
+export const FiltersForm = ({ updateFilters, handlePage }: Props) => {
   const { control, handleSubmit, reset } = useForm({
     defaultValues: {
       name: "",
@@ -39,6 +40,7 @@ export const FiltersForm = ({ updateFilters }: Props) => {
 
   const onSubmit: SubmitHandler<TFormValues> = (data) => {
     updateFilters(data);
+    handlePage(1);
   };
 
   const clearFilters = () => {

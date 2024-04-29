@@ -12,6 +12,7 @@ export const StyledForm = styled.form`
 
 export const Title = styled.h2`
   font-size: ${variables.fontSizes.fontM}px;
+  font-weight: 700;
   text-transform: uppercase;
   margin-bottom: 1em;
   align-self: flex-start;

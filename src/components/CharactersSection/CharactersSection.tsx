@@ -3,6 +3,8 @@ import { useLazyQuery } from "@apollo/client";
 
 import { CharactersList, Loader, NotFoundWrapper, SectionWrapper, Title } from "./styledComponents";
 
+import { Pagination } from "@mui/material";
+
 import notfound from "../../assets/notfound.png";
 
 import { CharacterCard } from "../CharacterCard";
@@ -40,6 +42,8 @@ export const CharactersSection = () => {
     species: "",
   });
 
+  const [currentPage, setCurrentPage] = useState(1);
+
   const [getCharactersWithFilters, { data: charactersWithAllFilters, loading }] = useLazyQuery(
     GET_CHARACTERS_WITH_FILTERS,
     {
@@ -49,6 +53,7 @@ export const CharactersSection = () => {
         species: filterValues.species,
         gender: filterValues.gender,
         type: filterValues.type,
+        page: currentPage,
       },
     },
   );
@@ -56,14 +61,15 @@ export const CharactersSection = () => {
   const updateFilters = (data: TFilterValues) => setFilterValues(data);
 
   const filteredData = charactersWithAllFilters?.characters.results || [];
+  const pages = charactersWithAllFilters?.characters.info.pages || [];
 
   useEffect(() => {
     getCharactersWithFilters();
-  }, [filterValues]);
-
+  }, [filterValues, currentPage]);
+  console.log(pages);
   return (
     <SectionWrapper>
-      <FiltersForm updateFilters={updateFilters} />
+      <FiltersForm updateFilters={updateFilters} handlePage={setCurrentPage} />
       <Title>Characters List</Title>
       {!!loading ? (
         <Loader />
@@ -88,6 +94,10 @@ export const CharactersSection = () => {
           <img src={notfound} />
         </NotFoundWrapper>
       ) : null}
+
+      {filteredData.length != 0 && (
+        <Pagination count={pages} page={currentPage} onChange={(_, number) => setCurrentPage(number)} />
+      )}
     </SectionWrapper>
   );
 };
